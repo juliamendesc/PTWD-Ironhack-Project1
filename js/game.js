@@ -1,23 +1,3 @@
-// class Game {
-//     constructor(canvas) {
-//         this.canvas = canvas;
-//         this.context = canvas.getContext("2d");
-//         this.width = this.canvas.width;
-//         this.height = this.canvas.height;
-//         this.background = new Image();
-//         this.background.src = "images/background.png";
-//             }
-//     start() {
-//         this.draw();
-
-//     }
-//     draw() {
-//         this.context.drawImage(this.background, 10, 10, 800, 500);
-//         this.player.draw();
-//     }
-
-// }
-
 class Game {
     constructor(canvas) {
         this.canvas = canvas;
@@ -25,16 +5,40 @@ class Game {
         this.width = canvas.width;
         this.height = canvas.height;
         this.player = new Player(this);
-        this.player.setControls();
-        // this.player.moveLeft();
-        // this.player.moveRight();
+        this.controls = new Controls(this);
+        this.controls.setControls();
+    
+        // this.end = false;
     }
+
+     drawEverything(timestamp)  {
+         this.context.clearRect(0, 0, this.width, this.height);
+         this.player.draw();
+         this.updateEverything(timestamp)
+        const animation = window.requestAnimationFrame(timestamp => this.drawEverything(timestamp));
+        if (this.end) {
+        window.cancelAnimationFrame(animation);
+        }
+    }
+
+    updateEverything() {
+        this.player.update();
+    }
+
+    animation(timestamp) {
+        this.drawEverything();
+        this.updateEverything(timestamp);
+    }
+
+    //  //game ends
+    // endGame() {
+    //     // this.score.highScore();
+    //     this.end = true;
+
+    // }
+
     start() {
         console.log("Game started!");
-        this.draw();
-    }
-    draw() {
-        this.context.clearRect(0, 0, this.width, this.height);
-        this.player.draw();
+        this.drawEverything();
     }
 }

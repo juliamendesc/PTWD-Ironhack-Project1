@@ -1,7 +1,8 @@
-const canvas = document.querySelector("canvas");
+const canvas = document.querySelector("#myCanvas");
 const game = new Game(canvas);
 
-window.addEventListener("keypress", event => {
+
+window.addEventListener("keydown", event => {
   if (event.keyCode === 13) {
     game.start();
   }
