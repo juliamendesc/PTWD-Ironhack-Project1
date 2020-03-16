@@ -11,7 +11,7 @@ class Player {
     }
     draw() {
         this.context.save();
-        this.context.fillStyle = "pink";
+        this.context.fillStyle = "blue";
         this.context.fillRect(this.x, this.y, this.width, this.height);
         this.context.restore();
     }
