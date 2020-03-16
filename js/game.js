@@ -25,8 +25,9 @@ class Game {
         this.width = canvas.width;
         this.height = canvas.height;
         this.player = new Player(this);
-        this.player.moveLeft();
-        this.player.moveRight();
+        this.player.setControls();
+        // this.player.moveLeft();
+        // this.player.moveRight();
     }
     start() {
         console.log("Game started!");

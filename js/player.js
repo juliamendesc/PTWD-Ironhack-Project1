@@ -34,12 +34,12 @@ class Player {
     }
     update() {
         this.x += this.speedX;
-        // if (this.x <= 0) {
-        //   this.speedX = 0;
-        // }
-        // if (this.x >= this.game.width - this.width) {
-        //   this.speedX = 0;
-        // }
+        if (this.x <= 0) {
+          this.speedX = 0;
+        }
+        if (this.x >= this.game.width - this.width) {
+          this.speedX = 0;
+        }
       }
     setControls() {
         window.addEventListener("keydown", event => {
