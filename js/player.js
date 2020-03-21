@@ -24,19 +24,19 @@ class Player {
       this.velocityX = 0;
     }
   }
-  // left() {
-  //   return this.x;
-  // }
+  left() {
+    return this.x;
+  }
 
-  // right() {
-  //   return this.x + this.image.width;
-  // }
+  right() {
+    return this.x + this.image.width;
+  }
 
-  // top() {
-  //   return this.y;
-  // }
+  top() {
+    return this.y;
+  }
 
-  // bottom() {
-  //   return this.y + this.image.height;
-  // }
+  bottom() {
+    return this.y + this.image.height;
+  }
  }
