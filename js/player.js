@@ -3,9 +3,9 @@ class Player {
     this.game = game;
     this.context = game.context;
     this.x = game.width / 2.3;
-    this.y = game.height - 180;
-    this.width = 120;
-    this.height = 150;
+    this.y = game.height - 130;
+    this.width = 90;
+    this.height = 110;
     this.velocityX = 0;
     this.image = new Image();
     this.image.src = "images/player2.png";
@@ -27,7 +27,7 @@ class Player {
   }
 
   right() {
-    return this.x + this.image.width;
+    return this.image.width + 5;
   }
 
   top() {
@@ -35,6 +35,6 @@ class Player {
   }
 
   bottom() {
-    return this.y + this.image.height;
+    return this.image.height + 5;
   }
  }
