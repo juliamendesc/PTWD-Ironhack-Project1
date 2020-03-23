@@ -35,6 +35,9 @@ class ObjectsToCatch {
     if (this.y + this.height > 520) {
       this.game.obstaclesToCatchArray.splice(0, 1);
     }
+    if (this.game.life > 0 && this.game.score % 5 === 0 && this.game.score !== 0) {
+      this.velocity += 0.5;
+    }
     // if (this.game.checkCollision(this.game.player, this.game.obstacle)) {
     //     this.game.scoreArray.push(1);
     //   }
@@ -53,10 +56,10 @@ class ObjectsToCatch {
   }
   checkCatchCollision(){
     if (
-      this.game.player.left() < this.rightCatch() &&
-      this.game.player.right() > this.leftCatch() &&
-      this.game.player.top() < this.bottomCatch() &&
-      this.game.player.bottom() > this.topCatch()
+      this.game.player.left() <= this.rightCatch() &&
+      this.game.player.right() >= this.leftCatch() &&
+      this.game.player.top() <= this.bottomCatch() &&
+      this.game.player.bottom() >= this.topCatch()
     ) {
       this.game.obstaclesToCatchArray.splice(0, 1);
       this.game.score += 1;

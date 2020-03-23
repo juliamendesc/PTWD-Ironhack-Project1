@@ -51,10 +51,10 @@ class ObjectsToAvoid {
     
     checkAvoidCollision() {
       if (
-        this.game.player.left() < this.rightAvoid() &&
-        this.game.player.right() > this.leftAvoid() &&
-        this.game.player.top() < this.bottomAvoid() &&
-        this.game.player.bottom() > this.topAvoid()
+        this.game.player.left() <= this.rightAvoid() &&
+        this.game.player.right() >= this.leftAvoid() &&
+        this.game.player.top() <= this.bottomAvoid() &&
+        this.game.player.bottom() >= this.topAvoid()
         ) {
             this.game.obstaclesToAvoidArray.splice(0, 1);
             this.game.life -= 1;

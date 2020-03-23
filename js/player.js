@@ -3,12 +3,12 @@ class Player {
     this.game = game;
     this.context = game.context;
     this.x = game.width / 2.3;
-    this.y = game.height - 130;
+    this.y = game.height - 150;
     this.width = 90;
-    this.height = 110;
+    this.height = 150;
     this.velocityX = 0;
     this.image = new Image();
-    this.image.src = "images/player2.png";
+    this.image.src = "images/scooby-doo-clipart-6.png";
   }
   draw() {
     this.context.drawImage(this.image, this.x, this.y, this.width, this.height);
@@ -27,7 +27,7 @@ class Player {
   }
 
   right() {
-    return this.image.width + 5;
+    return this.image.width;
   }
 
   top() {
@@ -35,6 +35,6 @@ class Player {
   }
 
   bottom() {
-    return this.image.height + 5;
+    return this.image.height;
   }
  }

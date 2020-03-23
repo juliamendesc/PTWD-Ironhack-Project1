@@ -19,6 +19,7 @@ class Game {
       this.life = 3;
       this.score = 0;
       this.level = 1;
+      this.velocity = 3;
     }
   
     drawEverything() {
@@ -50,6 +51,7 @@ class Game {
         obstacle.update();
         obstacle.checkCatchCollision();
       }
+
       //   this.objectsToAvoid.updateAvoidArray();
       // this.objectsToCatch.update();
     }
@@ -68,16 +70,13 @@ class Game {
         window.cancelAnimationFrame(animation);
       }
     }
-  //  checkCollisions(object) {
-  //   if (
-  //     this.player.left() < object.right() &&
-  //     this.player.right() > object.left() &&
-  //     this.player.top() < object.bottom() &&
-  //     this.player.bottom() > object.top()
-  //   ) {
-  //     return true;
-  //   }
-  // }
+    levelUp() {
+      this.level += 1;
+      this.score += 1;
+      this.updateObjectSpeedLevel();
+      console.log('level up');
+    }
+
     //  //game ends
     // endGame() {
     //     // this.score.highScore();

@@ -6,10 +6,10 @@ class Background {
       this.y = game.y;
       this.width = game.width;
       this.height = game.height;
-      this.background = new Image()
-      this.background.src = "images/background.png";
+      this.backgroundImg = new Image();
+      this.backgroundImg.src = "images/background.png";
     }
     draw() {
-        this.context.drawImage(this.background, this.x, this.y, this.width, this.height);
+      this.context.drawImage(this.backgroundImg, this.x, this.y, this.width, this.height);
     }
 }
