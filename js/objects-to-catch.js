@@ -58,7 +58,7 @@ class ObjectsToCatch {
       this.game.player.top() < this.bottomCatch() &&
       this.game.player.bottom() > this.topCatch()
     ) {
-      this.game.objectToCatchArray.splice(i, 1)
+      this.game.obstaclesToCatchArray.splice(0, 1);
       this.game.score += 1;
       console.log(`Lives ${this.game.life}`);
     }

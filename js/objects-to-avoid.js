@@ -56,7 +56,7 @@ class ObjectsToAvoid {
         this.game.player.top() < this.bottomAvoid() &&
         this.game.player.bottom() > this.topAvoid()
         ) {
-            this.game.objectToAvoidArray.splice(i, 1)
+            this.game.obstaclesToAvoidArray.splice(0, 1);
             this.game.life -= 1;
             console.log(`Lives ${this.game.life}`);
           }
