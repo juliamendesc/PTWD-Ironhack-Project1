@@ -7,18 +7,33 @@ class ObjectsToCatch {
     this.x = Math.floor(Math.random() * 15) * 50;
     this.y = 0;
     this.velocity = 3;
+    this.bacon = new Image();
+    this.bacon.src = "images/objects to catch/bacon.png";
+    this.cake = new Image();
+    this.cake.src = "images/objects to catch/bolo.png";
+    this.hotDog = new Image();
+    this.hotDog.src = "images/objects to catch/cachorro-quente.png";
+    this.shrimp = new Image();
+    this.shrimp.src = "images/objects to catch/camarao.png";
+    this.apple = new Image();
+    this.apple.src = "images/objects to catch/maca.png";
+    this.ramen = new Image();
+    this.ramen.src = "images/objects to catch/macarrao.png";
+    this.pizza = new Image();
+    this.pizza.src = "images/objects to catch/pizza.png";
+    this.objectToCatchArr = [this.bacon, this.cake, this.hotDog, this.shrimp, this.apple, this.ramen, this.pizza];
+    this.randomObjectToCatchImage = this.objectToCatchArr[Math.floor(Math.random() * this.objectToCatchArr.length)];
+    this.imageWidth = 50;
+    this.imageHeight = 50;
   }
   draw() {
-    this.context.save();
-    this.context.fillStyle = "red";
-    this.context.fillRect(this.x, this.y, this.width, this.height);
-    this.context.restore();
+    this.context.drawImage(this.randomObjectToCatchImage, this.x, this.y, this.imageWidth, this.imageHeight);
+
   }
   update() {
     this.y += this.velocity;
     if (this.y + this.height > 520) {
       this.game.obstaclesToCatchArray.splice(0, 1);
-      console.log("splicing object to catch");
     }
     // if (this.game.checkCollision(this.game.player, this.game.obstacle)) {
     //     this.game.scoreArray.push(1);
@@ -35,5 +50,17 @@ class ObjectsToCatch {
   }
   bottom() {
     return this.y + this.height;
+  }
+  checkCollision(){
+    if (
+      this.player.left() < this.right() &&
+      this.player.right() > this.left() &&
+      this.player.top() < this.bottom() &&
+      this.player.bottom() > this.top()
+    ) {
+      this.game.objectToCatchArray.splice(i, 1)
+      this.game.score += 1;
+      console.log(`Lives ${this.game.life}`);
+    }
   }
 }

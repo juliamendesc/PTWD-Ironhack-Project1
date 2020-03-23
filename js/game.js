@@ -15,6 +15,9 @@ class Game {
       // here you initiate the animationId (or loop)
       this.animationId;
       this.scoreArray = 0;
+      this.life = 3;
+      this.score = 0;
+      this.level = 1;
     }
   
     drawEverything() {
@@ -33,18 +36,17 @@ class Game {
     updateEverything() {
       this.drawEverything();
       if (this.animationId % 100 === 0) {
-        console.log("pushing Obstacle");
         this.obstaclesToAvoidArray.push(new ObjectsToAvoid(this));
-        console.log(this.obstaclesToAvoidArray);
         this.obstaclesToCatchArray.push(new ObjectsToCatch(this));
-        console.log(this.obstaclesToCatchArray);
       }
       this.player.update();
       for (let obstacle of this.obstaclesToAvoidArray) {
         obstacle.update();
+        obstacle.checkCollision();
       }
       for (let obstacle of this.obstaclesToCatchArray) {
         obstacle.update();
+        obstacle.checkCollision();
       }
       //   this.objectsToAvoid.updateAvoidArray();
       // this.objectsToCatch.update();
@@ -64,16 +66,16 @@ class Game {
         window.cancelAnimationFrame(animation);
       }
     }
-   checkCollisions(object) {
-    if (
-      this.player.left() < object.right() &&
-      this.player.right() > object.left() &&
-      this.player.top() < object.bottom() &&
-      this.player.bottom() > object.top()
-    ) {
-      return true;
-    }
-  }
+  //  checkCollisions(object) {
+  //   if (
+  //     this.player.left() < object.right() &&
+  //     this.player.right() > object.left() &&
+  //     this.player.top() < object.bottom() &&
+  //     this.player.bottom() > object.top()
+  //   ) {
+  //     return true;
+  //   }
+  // }
     //  //game ends
     // endGame() {
     //     // this.score.highScore();

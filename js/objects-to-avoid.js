@@ -3,24 +3,25 @@ class ObjectsToAvoid {
         this.game = game;
         this.context = game.context;
         this.width = 50;
-        this.height = 20;
+        this.height = 50;
         this.x = Math.floor(Math.random() * 15) * 50;
         this.y = 0;
         this.velocity = 3;
         this.boot = new Image();
-        this.boot.src = "images/objects to avoid/boot.jpg";
+        this.boot.src = "images/objects to avoid/sapatos.png";
         this.fish = new Image();
-        this.fish.src = "images/objects to avoid/espinha.png";
-        this.tin = new Image();
-        this.tin.src = "images/objects to avoid/lata.png";
+        this.fish.src = "images/objects to avoid/espinhapeixe.png";
+        this.trash = new Image();
+        this.trash.src = "images/objects to avoid/trash.png";
         this.poison = new Image();
-        this.poison.src = "images/objects to avoid/poison.png";
+        this.poison.src = "images/objects to avoid/veneno.png";
+        this.virus = new Image();
+        this.virus.src = "images/objects to avoid/virus.png";
+        this.objectToAvoidArr = [this.boot, this.fish, this.trash, this.poison, this.virus];
+        this.randomObjectToAvoidImage = this.objectToAvoidArr[Math.floor(Math.random() * this.objectToAvoidArr.length)];
     }
     draw(){
-        this.context.save();
-        this.context.fillStyle = "black";
-        this.context.fillRect(this.x, this.y, this.width, this.height);
-        this.context.restore();
+      this.context.drawImage(this.randomObjectToAvoidImage, this.x, this.y, this.width, this.height);
     }
     update() {
       this.y += this.velocity;
@@ -33,18 +34,31 @@ class ObjectsToAvoid {
     }
 
     left() {
-        return this.x;
-      }
+      return this.x;
+    }
     
-      right() {
-        return this.x + this.width;
-      }
+    right() {
+      return this.x + this.width;
+    }
     
-      top() {
-        return this.y;
-      }
+    top() {
+      return this.y;
+    }
     
-      bottom() {
-        return this.y + this.height;
+    bottom() {
+      return this.y + this.height;
+    }
+    
+    checkCollision() {
+      if (
+        this.player.left() < this.right() &&
+        this.player.right() > this.left() &&
+        this.player.top() < this.bottom() &&
+        this.player.bottom() > this.top()
+        ) {
+            this.game.objectToAvoidArray.splice(i, 1)
+            this.game.life -= 1;
+            console.log(`Lives ${this.game.life}`);
+          }
       }
 }
