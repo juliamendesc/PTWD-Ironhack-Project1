@@ -61,16 +61,16 @@ class Game {
         window.cancelAnimationFrame(animation);
       }
     }
-    checkCollisions(object) {
-        if (
-          this.player.left() < object.right() &&
-          this.player.right() > object.left() &&
-          this.player.top() < object.bottom() &&
-          this.player.bottom() > object.top()
-        ) {
-          return true;
-        }
-      }
+   checkCollisions(object) {
+    if (
+      this.player.left() < object.right() &&
+      this.player.right() > object.left() &&
+      this.player.top() < object.bottom() &&
+      this.player.bottom() > object.top()
+    ) {
+      return true;
+    }
+  }
     //  //game ends
     // endGame() {
     //     // this.score.highScore();

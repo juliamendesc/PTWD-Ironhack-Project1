@@ -23,7 +23,7 @@ class ObjectsToCatch {
     }
     updateCatchArray(){
         for (let i=0; i < this.game.obstaclesToCatchArray.length; i++) {
-            this.game.objectsToCatch.movementObjectToAvoid();
+            this.game.objectsToCatch.movementObjectToCatch();
             if (this.game.obstaclesToCatchArray[i].y + this.game.obstaclesToCatchArray[i].height > 501) {
                 this.game.obstaclesToCatchArray.splice(i, 1);
                 console.log("splicing object to catch")
