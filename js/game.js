@@ -24,6 +24,9 @@ class Game {
       this.obstaclesToAvoidArray.map(obstacle => {
         obstacle.draw();
       });
+      this.obstaclesToCatchArray.map(obstacle => {
+        obstacle.draw();
+      });
       this.player.draw();
     }
   
@@ -38,13 +41,13 @@ class Game {
       }
       this.player.update();
       for (let obstacle of this.obstaclesToAvoidArray) {
-        obstacle.movementObjectToAvoid();
+        obstacle.update();
       }
       for (let obstacle of this.obstaclesToCatchArray) {
-        obstacle.movementObjectToCatch();
+        obstacle.update();
       }
-    //   this.objectsToAvoid.updateAvoidArray();
-      this.objectsToCatch.updateCatchArray();
+      //   this.objectsToAvoid.updateAvoidArray();
+      // this.objectsToCatch.update();
     }
   
     animation(timestamp) {

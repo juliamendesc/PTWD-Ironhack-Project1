@@ -7,13 +7,11 @@ class Player {
     this.width = 100;
     this.height = 150;
     this.velocityX = 0;
-    // this.direction = null;
+    this.image = new Image();
+    this.image.src = "images/player.png";
   }
   draw() {
-    this.context.save();
-    this.context.fillStyle = "blue";
-    this.context.fillRect(this.x, this.y, this.width, this.height);
-    this.context.restore();
+    this.context.drawImage(this.image, this.x, this.y, this.width, this.height);
   }
   update() {
     this.x += this.velocityX;
