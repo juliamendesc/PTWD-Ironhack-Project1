@@ -39,24 +39,24 @@ class ObjectsToCatch {
     //     this.game.scoreArray.push(1);
     //   }
   }
-  left() {
+  leftCatch() {
     return this.x;
   }
-  right() {
+  rightCatch() {
     return this.x + this.width;
   }
-  top() {
+  topCatch() {
     return this.y;
   }
-  bottom() {
+  bottomCatch() {
     return this.y + this.height;
   }
-  checkCollision(){
+  checkCatchCollision(){
     if (
-      this.player.left() < this.right() &&
-      this.player.right() > this.left() &&
-      this.player.top() < this.bottom() &&
-      this.player.bottom() > this.top()
+      this.game.player.left() < this.rightCatch() &&
+      this.game.player.right() > this.leftCatch() &&
+      this.game.player.top() < this.bottomCatch() &&
+      this.game.player.bottom() > this.topCatch()
     ) {
       this.game.objectToCatchArray.splice(i, 1)
       this.game.score += 1;

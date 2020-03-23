@@ -33,28 +33,28 @@ class ObjectsToAvoid {
       // }
     }
 
-    left() {
+    leftAvoid() {
       return this.x;
     }
     
-    right() {
+    rightAvoid() {
       return this.x + this.width;
     }
     
-    top() {
+    topAvoid() {
       return this.y;
     }
     
-    bottom() {
+    bottomAvoid() {
       return this.y + this.height;
     }
     
-    checkCollision() {
+    checkAvoidCollision() {
       if (
-        this.player.left() < this.right() &&
-        this.player.right() > this.left() &&
-        this.player.top() < this.bottom() &&
-        this.player.bottom() > this.top()
+        this.game.player.left() < this.rightAvoid() &&
+        this.game.player.right() > this.leftAvoid() &&
+        this.game.player.top() < this.bottomAvoid() &&
+        this.game.player.bottom() > this.topAvoid()
         ) {
             this.game.objectToAvoidArray.splice(i, 1)
             this.game.life -= 1;
