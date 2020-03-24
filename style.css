@@ -5,6 +5,8 @@
     margin-left: auto;
     margin-right: auto;
     display: block;
+    background-image: url("images/background.png");
+    background-size: contain;
 }
 
 /* #start-button {

@@ -21,13 +21,14 @@ class Player {
     if (this.x >= this.game.width - this.width) {
       this.velocityX = 0;
     }
+    
   }
   left() {
     return this.x;
   }
 
   right() {
-    return this.image.width;
+    return this.x + this.image.width;
   }
 
   top() {
@@ -35,6 +36,6 @@ class Player {
   }
 
   bottom() {
-    return this.image.height;
+    return this.y + this.image.height;
   }
  }

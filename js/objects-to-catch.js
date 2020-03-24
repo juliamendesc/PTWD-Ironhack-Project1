@@ -38,9 +38,6 @@ class ObjectsToCatch {
     if (this.game.life > 0 && this.game.score % 5 === 0 && this.game.score !== 0) {
       this.velocity += 0.5;
     }
-    // if (this.game.checkCollision(this.game.player, this.game.obstacle)) {
-    //     this.game.scoreArray.push(1);
-    //   }
   }
   leftCatch() {
     return this.x;

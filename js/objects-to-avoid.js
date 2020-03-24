@@ -28,9 +28,9 @@ class ObjectsToAvoid {
       if (this.y + this.height > 520) {
         this.game.obstaclesToAvoidArray.splice(0, 1);
       }
-      // if (this.game.checkCollision(this.game.player, this.game.obstacle)) {
-      //     this.game.end = "true";
-      // }
+      if (this.game.life > 0 && this.game.score % 5 === 0 && this.game.score !== 0) {
+        this.velocity += 0.5;
+      }
     }
 
     leftAvoid() {

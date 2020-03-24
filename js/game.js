@@ -4,7 +4,6 @@ class Game {
       this.context = canvas.getContext("2d");
       this.width = canvas.width;
       this.height = canvas.height;
-      this.background = new Background(this);
       this.player = new Player(this);
       this.controls = new Controls(this);
       this.objectsToAvoid = new ObjectsToAvoid(this);
@@ -25,7 +24,6 @@ class Game {
     drawEverything() {
       // here you only draw
       this.context.clearRect(0, 0, this.width, this.height);
-      this.background.draw();
       // you loop through the obstracles Array and draw each of them
       this.obstaclesToAvoidArray.map(obstacle => {
         obstacle.draw();
@@ -51,9 +49,6 @@ class Game {
         obstacle.update();
         obstacle.checkCatchCollision();
       }
-
-      //   this.objectsToAvoid.updateAvoidArray();
-      // this.objectsToCatch.update();
     }
   
     animation(timestamp) {
