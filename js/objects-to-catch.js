@@ -21,42 +21,63 @@ class ObjectsToCatch {
     this.ramen.src = "images/objects to catch/macarrao.png";
     this.pizza = new Image();
     this.pizza.src = "images/objects to catch/pizza.png";
-    this.objectToCatchArr = [this.bacon, this.cake, this.hotDog, this.shrimp, this.apple, this.ramen, this.pizza];
-    this.randomObjectToCatchImage = this.objectToCatchArr[Math.floor(Math.random() * this.objectToCatchArr.length)];
+    this.objectToCatchArr = [
+      this.bacon,
+      this.cake,
+      this.hotDog,
+      this.shrimp,
+      this.apple,
+      this.ramen,
+      this.pizza
+    ];
+    this.randomObjectToCatchImage = this.objectToCatchArr[
+      Math.floor(Math.random() * this.objectToCatchArr.length)
+    ];
     this.imageWidth = 50;
     this.imageHeight = 50;
   }
   draw() {
-    this.context.drawImage(this.randomObjectToCatchImage, this.x, this.y, this.imageWidth, this.imageHeight);
-
+    this.context.drawImage(
+      this.randomObjectToCatchImage,
+      this.x,
+      this.y,
+      this.imageWidth,
+      this.imageHeight
+    );
   }
   update() {
     this.y += this.velocity;
     if (this.y + this.height > 520) {
       this.game.obstaclesToCatchArray.splice(0, 1);
     }
-    if (this.game.life > 0 && this.game.score % 5 === 0 && this.game.score !== 0) {
+    if (
+      this.game.life > 0 &&
+      this.game.score % 5 === 0 &&
+      this.game.score !== 0
+    ) {
       this.velocity += 0.5;
     }
   }
-  leftCatch() {
+  left() {
     return this.x;
   }
-  rightCatch() {
+  right() {
     return this.x + this.width;
   }
-  topCatch() {
+  top() {
     return this.y;
   }
-  bottomCatch() {
+  bottom() {
     return this.y + this.height;
   }
-  checkCatchCollision(){
+  checkCatchCollision() {
     if (
-      this.game.player.left() <= this.rightCatch() &&
-      this.game.player.right() >= this.leftCatch() &&
-      this.game.player.top() <= this.bottomCatch() &&
-      this.game.player.bottom() >= this.topCatch()
+      !(
+        this.game.player.bottom() < this.top() ||
+        this.game.player.top() > this.bottom() ||
+        this.game.player.right() < this.left() ||
+        this.game.player.left() > this.right()
+      )
     ) {
       this.game.obstaclesToCatchArray.splice(0, 1);
       this.game.score += 1;

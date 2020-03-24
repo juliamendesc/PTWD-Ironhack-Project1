@@ -9,6 +9,7 @@ class Player {
     this.velocityX = 0;
     this.image = new Image();
     this.image.src = "images/scooby-doo-clipart-6.png";
+    this.rightBorder = this.game.width - this.width;
   }
   draw() {
     this.context.drawImage(this.image, this.x, this.y, this.width, this.height);
@@ -21,21 +22,18 @@ class Player {
     if (this.x >= this.game.width - this.width) {
       this.velocityX = 0;
     }
-    
+
   }
   left() {
     return this.x;
   }
-
   right() {
-    return this.x + this.image.width;
+    return this.x + this.width;
   }
-
   top() {
     return this.y;
   }
-
   bottom() {
-    return this.y + this.image.height;
+    return this.y + this.height;
   }
- }
+}
