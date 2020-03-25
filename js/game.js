@@ -53,6 +53,10 @@ class Game {
         obstacle.update();
         obstacle.checkCatchCollision();
       }
+      if (this.life === 0) {
+        this.end = true;
+        // this.endGame();
+      } 
     }
   
     animation(timestamp) {
@@ -60,16 +64,11 @@ class Game {
       // this timestamp and also the animationId will increase since the function keeps on calling itself over and over again
       // to see and understand this uncomment this console log:
     //   console.log("Timestamp: ", timestamp, "AnimationId: ", this.animationId);
-      this.animationId = window.requestAnimationFrame(timestamp =>
-        this.animation(timestamp)
-      );
+      this.animationId = window.requestAnimationFrame(timestamp => {
+        this.animation(timestamp);
+      });
       // as the animation is always called it calls updaupdateEverything() which in turn calls drawEverything()
       this.updateEverything();
-      if (this.end === true) {
-        window.cancelAnimationFrame(animationId);
-        alert("GAME OVER!");
-        alert(`${this.score}`);
-      }
     }
     levelUp() {
       this.level += 1;
@@ -80,13 +79,10 @@ class Game {
 
      //game ends
     endGame() {
-      if (this.life === 0) {
-        // this.score.highScore();
-        this.end = true;
-
-      } else {
-        this.end = false;
-      }
+        window.cancelAnimationFrame();
+        // alert("GAME OVER!");
+        // alert(`Your final score is ${this.score}`);
+        console.log ("you lost!")
     }
     drawScore() {
     this.context.font = "16px Verdana";
