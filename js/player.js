@@ -3,9 +3,9 @@ class Player {
     this.game = game;
     this.context = game.context;
     this.x = game.width / 2.3;
-    this.y = game.height - 150;
+    this.y = game.height - 180;
     this.width = 90;
-    this.height = 150;
+    this.height = 170;
     this.velocityX = 0;
     this.image = new Image();
     this.image.src = "images/scooby-doo-clipart-6.png";

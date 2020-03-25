@@ -8,6 +8,8 @@ class Game {
       this.controls = new Controls(this);
       this.objectsToAvoid = new ObjectsToAvoid(this);
       this.objectsToCatch = new ObjectsToCatch(this);
+      this.heartImage = new Image();
+      this.heartImage.src = "images/heart.webp";
       this.controls.setControls();
       this.obstaclesToAvoidArray = [];
       this.obstaclesToCatchArray = [];
@@ -15,7 +17,7 @@ class Game {
       // here you initiate the animationId (or loop)
       this.animationId;
       this.scoreArray = 0;
-      this.life = 3;
+      this.life = 5;
       this.score = 0;
       this.level = 1;
       this.velocity = 3;
@@ -32,6 +34,8 @@ class Game {
         obstacle.draw();
       });
       this.player.draw();
+      this.drawScore();
+      this.drawLives();
     }
   
     updateEverything() {
@@ -61,8 +65,10 @@ class Game {
       );
       // as the animation is always called it calls updaupdateEverything() which in turn calls drawEverything()
       this.updateEverything();
-      if (this.end) {
-        window.cancelAnimationFrame(animation);
+      if (this.end === true) {
+        window.cancelAnimationFrame(animationId);
+        alert("GAME OVER!");
+        alert(`${this.score}`);
       }
     }
     levelUp() {
@@ -72,12 +78,47 @@ class Game {
       console.log('level up');
     }
 
-    //  //game ends
-    // endGame() {
-    //     // this.score.highScore();
-    //     this.end = true;
-  
-    // }
+     //game ends
+    endGame() {
+      if (this.life === 0) {
+        // this.score.highScore();
+        this.end = true;
+
+      } else {
+        this.end = false;
+      }
+    }
+    drawScore() {
+    this.context.font = "16px Verdana";
+    this.context.fillStyle = "#FFFFFF";
+    this.context.fillText("Score: "+ this.score, 10, 30);
+    }
+
+    drawLives() {
+      this.context.font = "16px Verdana";
+      this.context.fillStyle = "#FFFFFF";
+      if (this.life === 5) {
+      this.context.drawImage(this.heartImage, 665, 10, this.heartImage.width * 0.05, this.heartImage.height * 0.05);
+      this.context.drawImage(this.heartImage, 690, 10, this.heartImage.width * 0.05, this.heartImage.height * 0.05);
+      this.context.drawImage(this.heartImage, 715, 10, this.heartImage.width * 0.05, this.heartImage.height * 0.05);
+      this.context.drawImage(this.heartImage, 740, 10, this.heartImage.width * 0.05, this.heartImage.height * 0.05);
+      this.context.drawImage(this.heartImage, 765, 10, this.heartImage.width * 0.05, this.heartImage.height * 0.05);
+    } else if (this.life === 4) {
+      this.context.drawImage(this.heartImage, 690, 10, this.heartImage.width * 0.05, this.heartImage.height * 0.05);
+      this.context.drawImage(this.heartImage, 715, 10, this.heartImage.width * 0.05, this.heartImage.height * 0.05);
+      this.context.drawImage(this.heartImage, 740, 10, this.heartImage.width * 0.05, this.heartImage.height * 0.05);
+      this.context.drawImage(this.heartImage, 765, 10, this.heartImage.width * 0.05, this.heartImage.height * 0.05);
+    } else if (this.life === 3) {
+      this.context.drawImage(this.heartImage, 715, 10, this.heartImage.width * 0.05, this.heartImage.height * 0.05);
+      this.context.drawImage(this.heartImage, 740, 10, this.heartImage.width * 0.05, this.heartImage.height * 0.05);
+      this.context.drawImage(this.heartImage, 765, 10, this.heartImage.width * 0.05, this.heartImage.height * 0.05);
+    } else if (this.life === 2) {
+      this.context.drawImage(this.heartImage, 740, 10, this.heartImage.width * 0.05, this.heartImage.height * 0.05);
+      this.context.drawImage(this.heartImage, 765, 10, this.heartImage.width * 0.05, this.heartImage.height * 0.05);
+    } else if (this.life === 1) {
+      this.context.drawImage(this.heartImage, 765, 10, this.heartImage.width * 0.05, this.heartImage.height * 0.05);
+    } 
+  }
   
     start() {
       console.log("Game started!");

@@ -47,6 +47,8 @@ class ObjectsToAvoid {
       this.game.score % 5 === 0 &&
       this.game.score !== 0
     ) {
+      this.context.clearRect(0, 0, this.width, this.height);
+      this.context.fillText("Level Up!!", this.width / 2, this.height / 2);
       this.velocity += 0.5;
     }
   }
