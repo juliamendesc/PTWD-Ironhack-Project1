@@ -55,7 +55,7 @@ class ObjectsToCatch {
       this.game.score % 5 === 0 &&
       this.game.score !== 0
     ) {
-      this.velocity += 0.5;
+      this.velocity = ;
     }
   }
   left() {
