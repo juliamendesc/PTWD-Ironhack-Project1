@@ -10,6 +10,8 @@ class Game {
       this.objectsToCatch = new ObjectsToCatch(this);
       this.heartImage = new Image();
       this.heartImage.src = "images/heart.webp";
+      this.gameOverImg = new Image();
+      this.gameOverImg.src = "images/player-game_over.png";
       this.controls.setControls();
       this.obstaclesToAvoidArray = [];
       this.obstaclesToCatchArray = [];
@@ -89,10 +91,17 @@ class Game {
     endGame() {
       if (this.end == true) {
         window.cancelAnimationFrame(this.animationId);
-        this.context.fillStyle = "red";
-        this.context.fillText("GAME OVER!", this.width / 2, this.height / 2)
         console.log ("you lost!")
-        // this.reset();
+        this.context.fillStyle = "black";
+        this.context.fillRect(0, 0, this.width, this.height);
+        this.context.drawImage(this.gameOverImg, 550, 140, this.gameOverImg.width / 2, this.gameOverImg.height/ 2);
+        this.context.fillStyle = "white";
+        this.context.font = "75px monogram";
+        this.context.fillText("GAME OVER", 80, 200);
+        this.context.font = "50px monogram";
+        this.context.fillText(`Score: ${this.score}`, 85, 285);
+        this.context.font = "40px monogram";
+        this.context.fillText("Try again? Press Enter!", 85, 335);
       }
     }
     reset() {
