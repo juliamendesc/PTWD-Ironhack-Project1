@@ -42,3 +42,15 @@ body {
     align-self: center;
     font-family: 'Maven Pro', sans-serif;
 }
+.h4-left {
+    text-align: left;
+}
+.h4-right {
+    text-align: right;
+}
+.p-left {
+    text-align: left;
+}
+.p-right {
+    text-align: right;
+}
