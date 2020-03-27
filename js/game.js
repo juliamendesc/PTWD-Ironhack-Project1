@@ -24,7 +24,7 @@ class Game {
       this.life = 5;
       this.score = 0;
       this.level = 1;
-      this.velocity = 3;
+      this.newVelocity = 1;
       this.frame = 0;
       this.gameSound = new Audio();
       this.gameSound.src = "images/SnackTime.mp3";
@@ -70,6 +70,13 @@ class Game {
       if (this.score === 50) {
         this.gameWon();
       }
+      if (
+        this.life > 0 &&
+        this.score % 5 == 0 &&
+        this.score !== 0
+      ) {
+        this.levelUp();
+      }
     }
     animation(timestamp) {
       // now you are assignig the animation id to the requested animation frame
@@ -84,14 +91,19 @@ class Game {
       } else {
         this.endGame();
       }
+
       // as the animation is always called it calls updateEverything() which in turn calls drawEverything()
       this.updateEverything();
     }
     levelUp() {
       this.level += 1;
-      this.score += 1;
-      this.updateObjectSpeedLevel();
+      // this.score += 1;
+      this.objectsToCatch.y = this.objectsToCatch.y + this.objectsToCatch.velocity;
+      this.objectsToAvoid.y = this.objectsToAvoid.y + this.objectsToAvoid.velocity;
+      this.objectsToCatch.velocity += this.newVelocity;
+      this.objectsToAvoid.velocity += this.newVelocity;
       console.log('level up');
+ 
     }
     lifeUpdate(){
       if (this.life == 0) {

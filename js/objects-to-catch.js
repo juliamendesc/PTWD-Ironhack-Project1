@@ -50,13 +50,6 @@ class ObjectsToCatch {
     if (this.y + this.height > 520) {
       this.game.obstaclesToCatchArray.splice(0, 1);
     }
-    if (
-      this.game.life > 0 &&
-      this.game.score % 5 === 0 &&
-      this.game.score !== 0
-    ) {
-      this.velocity = 1;
-    }
   }
   left() {
     return this.x;

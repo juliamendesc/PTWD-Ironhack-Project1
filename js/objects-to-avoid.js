@@ -7,6 +7,7 @@ class ObjectsToAvoid {
     this.x = Math.floor(Math.random() * 15) * 50;
     this.y = 0;
     this.velocity = 3;
+    this.newVelocity = this.velocity + 1;
     this.boot = new Image();
     this.boot.src = "images/objects to avoid/sapatos.png";
     this.fish = new Image();
@@ -42,16 +43,8 @@ class ObjectsToAvoid {
     if (this.y + this.height > 520) {
       this.game.obstaclesToAvoidArray.splice(0, 1);
     }
-    if (
-      this.game.life > 0 &&
-      this.game.score % 5 === 0 &&
-      this.game.score !== 0
-    ) {
-      this.context.clearRect(0, 0, this.width, this.height);
-      this.context.fillText("Level Up!!", this.width / 4, this.height / 4);
-      this.velocity = this.velocity+1;
-    }
-  }
+    
+   }
   left() {
     return this.x;
   }

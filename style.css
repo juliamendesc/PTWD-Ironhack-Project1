@@ -16,7 +16,7 @@ body {
     background-color: #64c7ce;
 }
 .image {
-    text-align: center;
+    float: right;
     padding-bottom: 5px;
 }
 .title {
@@ -30,7 +30,7 @@ body {
 .container {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-evenly;
     text-align: left;
 }
 .instructions {
