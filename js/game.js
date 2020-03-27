@@ -21,6 +21,7 @@ class Game {
       this.score = 0;
       this.level = 1;
       this.velocity = 3;
+      this.frame = 0;
     }
   
     drawEverything() {
@@ -39,7 +40,10 @@ class Game {
     }
   
     updateEverything() {
+      this.frame++;
       this.drawEverything();
+      this.lifeUpdate();
+      this.endGame();
       if (this.animationId % 100 === 0) {
         this.obstaclesToAvoidArray.push(new ObjectsToAvoid(this));
         this.obstaclesToCatchArray.push(new ObjectsToCatch(this));
@@ -53,9 +57,7 @@ class Game {
         obstacle.update();
         obstacle.checkCatchCollision();
       }
-        this.endGame();
     }
-  
     animation(timestamp) {
       // now you are assignig the animation id to the requested animation frame
       // this timestamp and also the animationId will increase since the function keeps on calling itself over and over again
@@ -64,7 +66,12 @@ class Game {
       this.animationId = window.requestAnimationFrame(timestamp => {
         this.animation(timestamp);
       });
-      // as the animation is always called it calls updaupdateEverything() which in turn calls drawEverything()
+      if (this.end = false) {
+        this.animation(timestamp);
+      } else {
+        this.endGame();
+      }
+      // as the animation is always called it calls updateEverything() which in turn calls drawEverything()
       this.updateEverything();
     }
     levelUp() {
@@ -73,21 +80,35 @@ class Game {
       this.updateObjectSpeedLevel();
       console.log('level up');
     }
-
+    lifeUpdate(){
+      if (this.life == 0) {
+        return this.end = true;
+      }
+    }
      //game ends
     endGame() {
-      if (this.life === 0) {
-        // this.game.end === true;
-      // }
-      // if (this.end === true) {
+      if (this.end == true) {
         window.cancelAnimationFrame(this.animationId);
         this.context.fillStyle = "red";
         this.context.fillText("GAME OVER!", this.width / 2, this.height / 2)
-        // alert("GAME OVER!");
-        // alert(`Your final score is ${this.score}`);
         console.log ("you lost!")
+        // this.reset();
       }
     }
+    reset() {
+      this.player = new Player(this);
+      this.controls.setControls();
+      this.obstaclesToAvoidArray = [];
+      this.obstaclesToCatchArray = [];
+      this.end === false;
+      this.frame = 0;
+      this.scoreArray = 0;
+      this.score = 0;
+      this.level = 1;
+      this.velocity = 3;
+      this.life = 5;
+    }
+
     drawScore() {
     this.context.font = "16px Verdana";
     this.context.fillStyle = "#FFFFFF";
@@ -119,10 +140,10 @@ class Game {
       this.context.drawImage(this.heartImage, 765, 10, this.heartImage.width * 0.05, this.heartImage.height * 0.05);
     } 
   }
-  
-    start() {
+  start() {
       console.log("Game started!");
       // you only need to call animation here since this will initiate the update and draw function
+      this.reset();
       this.animation();
     }
   }
