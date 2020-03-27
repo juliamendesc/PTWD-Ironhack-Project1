@@ -67,7 +67,7 @@ class Game {
         obstacle.update();
         obstacle.checkCatchCollision();
       }
-      if (this.score === 10) {
+      if (this.score === 50) {
         this.gameWon();
       }
     }
