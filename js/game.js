@@ -12,6 +12,8 @@ class Game {
       this.heartImage.src = "images/heart.webp";
       this.gameOverImg = new Image();
       this.gameOverImg.src = "images/player-game_over.png";
+      this.gameWonImage = new Image();
+      this.gameWonImage.src = "images/player-winner.png";
       this.controls.setControls();
       this.obstaclesToAvoidArray = [];
       this.obstaclesToCatchArray = [];
@@ -24,6 +26,12 @@ class Game {
       this.level = 1;
       this.velocity = 3;
       this.frame = 0;
+      this.gameSound = new Audio();
+      this.gameSound.src = "images/SnackTime.mp3";
+      this.scaredToDeath = new Audio();
+      this.scaredToDeath.src = "images/ScaredtoDeath.mp3";
+      this.grandFinale = new Audio();
+      this.grandFinale.src = "images/GrandFinale.mp3";
     }
   
     drawEverything() {
@@ -59,6 +67,9 @@ class Game {
         obstacle.update();
         obstacle.checkCatchCollision();
       }
+      if (this.score === 10) {
+        this.gameWon();
+      }
     }
     animation(timestamp) {
       // now you are assignig the animation id to the requested animation frame
@@ -90,6 +101,9 @@ class Game {
      //game ends
     endGame() {
       if (this.end == true) {
+        this.gameSound.pause();
+        this.gameSound.currentTime = 0;
+        this.scaredToDeath.play();
         window.cancelAnimationFrame(this.animationId);
         console.log ("you lost!")
         this.context.fillStyle = "black";
@@ -104,7 +118,26 @@ class Game {
         this.context.fillText("Try again? Press Enter!", 85, 335);
       }
     }
+    gameWon() {
+      this.gameSound.pause();
+      this.gameSound.currentTime = 0;
+      this.grandFinale.play();
+      window.cancelAnimationFrame(this.animationId);
+      console.log("you won!");
+      this.context.fillStyle = "white";
+      this.context.fillRect(0, 0, this.width, this.height);
+      this.context.drawImage(this.gameWonImage, 550, 150, this.gameWonImage.width, this.gameWonImage.height );
+      this.context.fillStyle = "black";
+      this.context.font = "75px monogram";
+      this.context.fillText("YOU MADE IT!", 80, 200);
+      this.context.font = "50px monogram";
+      this.context.fillText(`Score: ${this.score}`, 85, 270);
+    }
     reset() {
+      this.scaredToDeath.pause();
+      this.scaredToDeath.currentTime = 0;
+      this.grandFinale.pause();
+      this.grandFinale.currentTime = 0;
       this.player = new Player(this);
       this.controls.setControls();
       this.obstaclesToAvoidArray = [];
@@ -154,5 +187,6 @@ class Game {
       // you only need to call animation here since this will initiate the update and draw function
       this.reset();
       this.animation();
+      this.gameSound.play();
     }
   }
