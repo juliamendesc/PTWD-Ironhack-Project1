@@ -53,10 +53,7 @@ class Game {
         obstacle.update();
         obstacle.checkCatchCollision();
       }
-      if (this.life === 0) {
-        this.end = true;
-        // this.endGame();
-      } 
+        this.endGame();
     }
   
     animation(timestamp) {
@@ -79,10 +76,17 @@ class Game {
 
      //game ends
     endGame() {
-        window.cancelAnimationFrame();
+      if (this.life === 0) {
+        // this.game.end === true;
+      // }
+      // if (this.end === true) {
+        window.cancelAnimationFrame(this.animationId);
+        this.context.fillStyle = "red";
+        this.context.fillText("GAME OVER!", this.width / 2, this.height / 2)
         // alert("GAME OVER!");
         // alert(`Your final score is ${this.score}`);
         console.log ("you lost!")
+      }
     }
     drawScore() {
     this.context.font = "16px Verdana";
