@@ -48,7 +48,7 @@ class ObjectsToAvoid {
       this.game.score >= 5 && this.game.score < 10
     ) {
       this.velocity = 3;
-      console.log("VELOCITY 3", this.velocity);
+      // console.log("VELOCITY 3", this.velocity);
       return this.velocity;
     }
     if (
@@ -56,7 +56,7 @@ class ObjectsToAvoid {
       this.game.score >= 10 && this.game.score < 15
     ) {
       this.velocity = 4;
-      console.log("VELOCITY 4", this.velocity);
+      // console.log("VELOCITY 4", this.velocity);
       return this.velocity;
     }
     if (
@@ -64,7 +64,7 @@ class ObjectsToAvoid {
       this.game.score >= 15 && this.game.score < 20
     ) {
       this.velocity = 5;
-      console.log("VELOCITY 5", this.velocity);
+      // console.log("VELOCITY 5", this.velocity);
       return this.velocity;
     }
     if (
@@ -72,7 +72,7 @@ class ObjectsToAvoid {
       this.game.score >= 20 && this.game.score < 25
     ) {
       this.velocity = 6;
-      console.log("VELOCITY 6", this.velocity);
+      // console.log("VELOCITY 6", this.velocity);
       return this.velocity;
     }
     if (
@@ -80,7 +80,7 @@ class ObjectsToAvoid {
       this.game.score >= 25 && this.game.score <= 30
     ) {
       this.velocity = 7;
-      console.log("VELOCITY 6", this.velocity);
+      // console.log("VELOCITY 6", this.velocity);
       return this.velocity;
     }
    }

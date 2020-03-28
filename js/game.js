@@ -23,7 +23,7 @@ class Game {
       // here you initiate the animationId (or loop)
       this.animationId;
       this.scoreArray = 0;
-      this.life = 5;
+      this.life = 1;
       this.score = 0;
       this.level = 1;
       this.frame = 0;
@@ -51,13 +51,11 @@ class Game {
     updateEverything() {
       this.frame++;
       this.drawEverything();
-      this.lifeUpdate();
-      this.endGame();
+      this.player.update();
       if (this.animationId % 100 === 0) {
         this.obstaclesToAvoidArray.push(new ObjectsToAvoid(this));
         this.obstaclesToCatchArray.push(new ObjectsToCatch(this));
       }
-      this.player.update();
       for (let obstacle of this.obstaclesToAvoidArray) {
         obstacle.update();
         obstacle.checkAvoidCollision();
@@ -66,9 +64,10 @@ class Game {
         obstacle.update();
         obstacle.checkCatchCollision();
       }
-      if (this.score === 30) {
+      if (this.score === 25) {
         this.gameWon();
       }
+      this.lifeUpdate();
     }
     animation(timestamp) {
       // now you are assignig the animation id to the requested animation frame
@@ -78,34 +77,17 @@ class Game {
       this.animationId = window.requestAnimationFrame(timestamp => {
         this.animation(timestamp);
       });
-      // if (this.life > 0 && this.score % 5 === 0 && this.score !== 0) {
-      //   // this.level++;
-      //   this.drawEverything(timestamp);
-      // } else if (this.life > 0 && this.level < 7) {
-      //   this.drawEverything(timestamp);
-      // } else if (this.level === 7) {
-      //   this.gameWon();
-      // } else if (this.life == 0) {
-      //   this.end = true;
-      //   this.endGame();
-      // }
       // as the animation is always called it calls updateEverything() which in turn calls drawEverything()
       this.updateEverything();
-      // console.log(`Level ${this.level}`);
-      // console.log(`Score ${this.score}`);
     }
-    // levelUp() {
-    //   this.level += 1;
-    //   console.log('level up');
-    // }
     lifeUpdate(){
-      if (this.life == 0) {
-        return this.end = true;
+      if (this.life === 0) {
+        return this.endGame();
       }
     }
      //game ends
     endGame() {
-      if (this.end == true) {
+      // if (this.end == true) {
         this.gameSound.pause();
         this.gameSound.currentTime = 0;
         this.scaredToDeath.play();
@@ -120,7 +102,7 @@ class Game {
         this.context.fillText(`Score: ${this.score}`, 85, 285);
         this.context.font = "40px monogram";
         this.context.fillText("Try again? Press Enter!", 85, 335);
-      }
+      // }
     }
     gameWon() {
       this.gameSound.pause();
@@ -150,7 +132,7 @@ class Game {
       this.score = 0;
       this.level = 1;
       this.velocity = 3;
-      this.life = 5;
+      this.life = 1;
     }
 
     drawScore() {

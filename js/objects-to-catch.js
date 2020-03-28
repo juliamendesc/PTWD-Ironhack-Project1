@@ -51,59 +51,46 @@ class ObjectsToCatch {
     if (this.y + this.height > 520) {
       this.game.obstaclesToCatchArray.splice(0, 1);
     }
-    // if (
-    //   this.game.life > 0 &&
-    //   this.game.score % 5 === 0 &&
-    //   this.game.score !== 0
-    // ) {
-    //   this.y = this.y + this.velocity;
-    //   // this.velocity = this.velocity + this.increaseVelocity;
-    // }
-    // update() {
-    //   this.y += this.velocity;
-    //   if (this.y + this.height > 520) {
-    //     this.game.obstaclesToCatchArray.splice(0, 1);
-    //   }
-      if (
-        this.game.life > 0 && this.game.score !== 0 &&
-        this.game.score >= 5 && this.game.score < 10
-      ) {
-        this.velocity = 3;
-        console.log("VELOCITY 3", this.velocity);
-        return this.velocity;
+    if (
+      this.game.life > 0 && this.game.score !== 0 &&
+      this.game.score >= 5 && this.game.score < 10
+    ) {
+      this.velocity = 3;
+      // console.log("VELOCITY 3", this.velocity);
+      return this.velocity;
       }
-      if (
-        this.game.life > 0 && this.game.score !== 0 &&
-        this.game.score >= 10 && this.game.score < 15
-      ) {
-        this.velocity = 4;
-        console.log("VELOCITY 4", this.velocity);
-        return this.velocity;
-      }
-      if (
-        this.game.life > 0 && this.game.score !== 0 &&
-        this.game.score >= 15 && this.game.score < 20
-      ) {
-        this.velocity = 5;
-        console.log("VELOCITY 5", this.velocity);
-        return this.velocity;
-      }
-      if (
-        this.game.life > 0 && this.game.score !== 0 &&
-        this.game.score >= 20 && this.game.score < 25
-      ) {
-        this.velocity = 6;
-        console.log("VELOCITY 6", this.velocity);
-        return this.velocity;
-      }
-      if (
-        this.game.life > 0 && this.game.score !== 0 &&
-        this.game.score >= 25 && this.game.score <= 30
-      ) {
-        this.velocity = 7;
-        console.log("VELOCITY 6", this.velocity);
-        return this.velocity;
-      }
+    if (
+      this.game.life > 0 && this.game.score !== 0 &&
+      this.game.score >= 10 && this.game.score < 15
+    ) {
+      this.velocity = 4;
+      // console.log("VELOCITY 4", this.velocity);
+      return this.velocity;
+    }
+    if (
+      this.game.life > 0 && this.game.score !== 0 &&
+      this.game.score >= 15 && this.game.score < 20
+    ) {
+      this.velocity = 5;
+      // console.log("VELOCITY 5", this.velocity);
+      return this.velocity;
+    }
+    if (
+      this.game.life > 0 && this.game.score !== 0 &&
+      this.game.score >= 20 && this.game.score < 25
+    ) {
+      this.velocity = 6;
+      // console.log("VELOCITY 6", this.velocity);
+      return this.velocity;
+    }
+    if (
+      this.game.life > 0 && this.game.score !== 0 &&
+      this.game.score >= 25 && this.game.score <= 30
+    ) {
+      this.velocity = 7;
+      // console.log("VELOCITY 6", this.velocity);
+      return this.velocity;
+    }
   }
   left() {
     return this.x;
