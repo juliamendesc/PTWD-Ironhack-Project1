@@ -23,7 +23,7 @@ class Game {
       // here you initiate the animationId (or loop)
       this.animationId;
       this.scoreArray = 0;
-      this.life = 1;
+      this.life = 5;
       this.score = 0;
       this.level = 1;
       this.frame = 0;
@@ -130,9 +130,9 @@ class Game {
       this.frame = 0;
       this.scoreArray = 0;
       this.score = 0;
-      this.level = 1;
-      this.velocity = 3;
-      this.life = 1;
+      // this.level = 1;
+      // this.velocity = 2;
+      this.life = 5;
     }
 
     drawScore() {
