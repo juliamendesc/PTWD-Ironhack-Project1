@@ -83,7 +83,6 @@ class ObjectsToCatch {
     ) {
       this.game.obstaclesToCatchArray.splice(0, 1);
       this.game.score += 1;
-      console.log(`Score ${this.game.score}`);
     }
   }
 }

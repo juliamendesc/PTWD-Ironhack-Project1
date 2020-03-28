@@ -76,7 +76,6 @@ class ObjectsToAvoid {
     ) {
       this.game.obstaclesToAvoidArray.splice(0, 1);
       this.game.life -= 1;
-      console.log(`Lives ${this.game.life}`);
     }
   }
 }

@@ -34,7 +34,6 @@ class Game {
       this.grandFinale = new Audio();
       this.grandFinale.src = "images/GrandFinale.mp3";
     }
-  
     drawEverything() {
       // here you only draw
       this.context.clearRect(0, 0, this.width, this.height);
@@ -49,12 +48,10 @@ class Game {
       this.drawScore();
       this.drawLives();
     }
-  
     updateEverything() {
       this.frame++;
       this.drawEverything();
       this.lifeUpdate();
-
       this.endGame();
       if (this.animationId % 100 === 0) {
         this.obstaclesToAvoidArray.push(new ObjectsToAvoid(this));
@@ -72,16 +69,6 @@ class Game {
       if (this.level === 50) {
         this.gameWon();
       }
-      if (
-        this.life > 0 &&
-        this.score % 5 === 0 &&
-        this.score !== 0
-      ) {
-        this.levelUp();
-      }
-      if (this.levelUp()){
-        obstacle.y = obstacle.y + obstacle.velocity;
-      }
     }
     animation(timestamp) {
       // now you are assignig the animation id to the requested animation frame
@@ -91,19 +78,26 @@ class Game {
       this.animationId = window.requestAnimationFrame(timestamp => {
         this.animation(timestamp);
       });
-      if (this.end = false) {
-        this.animation(timestamp);
-      } else {
-        this.endGame();
+      if (this.life > 0 && this.score % 5 === 0 && this.score !== 0) {
+        this.level++;
+        this.drawEverything(timestamp);
+      } else if (this.life > 0 && this.level < 7) {
+        this.drawEverything(timestamp);
+      } else if (this.level === 7) {
+        this.gameWon();
+      } else if (this.life === 0) {
+        this.end = true;
+        this.gameOver();
       }
-
       // as the animation is always called it calls updateEverything() which in turn calls drawEverything()
       this.updateEverything();
+      console.log(`Level ${this.level}`);
+      console.log(`Score ${this.score}`);
     }
-    levelUp() {
-      this.level += 1;
-      console.log('level up');
-  }
+    // levelUp() {
+    //   this.level += 1;
+    //   console.log('level up');
+    // }
     lifeUpdate(){
       if (this.life == 0) {
         return this.end = true;
@@ -116,7 +110,6 @@ class Game {
         this.gameSound.currentTime = 0;
         this.scaredToDeath.play();
         window.cancelAnimationFrame(this.animationId);
-        console.log ("you lost!")
         this.context.fillStyle = "black";
         this.context.fillRect(0, 0, this.width, this.height);
         this.context.drawImage(this.gameOverImg, 550, 140, this.gameOverImg.width / 2, this.gameOverImg.height/ 2);
@@ -134,7 +127,6 @@ class Game {
       this.gameSound.currentTime = 0;
       this.grandFinale.play();
       window.cancelAnimationFrame(this.animationId);
-      console.log("you won!");
       this.context.drawImage(this.backgroundWinImg, 0, 0, this.width, this.height);
       this.context.drawImage(this.gameWonImage, 225, 250, this.gameWonImage.width, this.gameWonImage.height );
       this.context.fillStyle = "black";
@@ -200,3 +192,4 @@ class Game {
       this.gameSound.play();
     }
   }
+
