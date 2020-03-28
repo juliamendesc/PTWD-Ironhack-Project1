@@ -7,6 +7,7 @@ class ObjectsToCatch {
     this.x = Math.floor(Math.random() * 15) * 50;
     this.y = 0;
     this.velocity = 3;
+    this.increaseVelocity = 1;
     this.bacon = new Image();
     this.bacon.src = "images/objects to catch/bacon.png";
     this.cake = new Image();
@@ -50,6 +51,14 @@ class ObjectsToCatch {
     if (this.y + this.height > 520) {
       this.game.obstaclesToCatchArray.splice(0, 1);
     }
+    // if (
+    //   this.life > 0 &&
+    //   this.score % 5 == 0 &&
+    //   this.score !== 0
+    // ) {
+    //   this.y = this.y + this.velocity;
+    //   // this.velocity = this.velocity + this.increaseVelocity;
+    // }
   }
   left() {
     return this.x;

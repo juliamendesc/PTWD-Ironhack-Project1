@@ -13,7 +13,9 @@ class Game {
       this.gameOverImg = new Image();
       this.gameOverImg.src = "images/player-game_over.png";
       this.gameWonImage = new Image();
-      this.gameWonImage.src = "images/player-winner.png";
+      this.gameWonImage.src = "images/scooby_shaggy.png";
+      this.backgroundWinImg = new Image();
+      this.backgroundWinImg.src = "images/backgroundWin.jpg";
       this.controls.setControls();
       this.obstaclesToAvoidArray = [];
       this.obstaclesToCatchArray = [];
@@ -24,7 +26,6 @@ class Game {
       this.life = 5;
       this.score = 0;
       this.level = 1;
-      this.newVelocity = 1;
       this.frame = 0;
       this.gameSound = new Audio();
       this.gameSound.src = "images/SnackTime.mp3";
@@ -53,6 +54,7 @@ class Game {
       this.frame++;
       this.drawEverything();
       this.lifeUpdate();
+
       this.endGame();
       if (this.animationId % 100 === 0) {
         this.obstaclesToAvoidArray.push(new ObjectsToAvoid(this));
@@ -67,15 +69,18 @@ class Game {
         obstacle.update();
         obstacle.checkCatchCollision();
       }
-      if (this.score === 50) {
+      if (this.level === 50) {
         this.gameWon();
       }
       if (
         this.life > 0 &&
-        this.score % 5 == 0 &&
+        this.score % 5 === 0 &&
         this.score !== 0
       ) {
         this.levelUp();
+      }
+      if (this.levelUp()){
+        obstacle.y = obstacle.y + obstacle.velocity;
       }
     }
     animation(timestamp) {
@@ -97,14 +102,8 @@ class Game {
     }
     levelUp() {
       this.level += 1;
-      // this.score += 1;
-      this.objectsToCatch.y = this.objectsToCatch.y + this.objectsToCatch.velocity;
-      this.objectsToAvoid.y = this.objectsToAvoid.y + this.objectsToAvoid.velocity;
-      this.objectsToCatch.velocity += this.newVelocity;
-      this.objectsToAvoid.velocity += this.newVelocity;
       console.log('level up');
- 
-    }
+  }
     lifeUpdate(){
       if (this.life == 0) {
         return this.end = true;
@@ -136,14 +135,13 @@ class Game {
       this.grandFinale.play();
       window.cancelAnimationFrame(this.animationId);
       console.log("you won!");
-      this.context.fillStyle = "white";
-      this.context.fillRect(0, 0, this.width, this.height);
-      this.context.drawImage(this.gameWonImage, 550, 150, this.gameWonImage.width, this.gameWonImage.height );
+      this.context.drawImage(this.backgroundWinImg, 0, 0, this.width, this.height);
+      this.context.drawImage(this.gameWonImage, 225, 250, this.gameWonImage.width, this.gameWonImage.height );
       this.context.fillStyle = "black";
       this.context.font = "75px monogram";
-      this.context.fillText("YOU MADE IT!", 80, 200);
+      this.context.fillText("YOU MADE IT!", 80, 190);
       this.context.font = "50px monogram";
-      this.context.fillText(`Score: ${this.score}`, 85, 270);
+      this.context.fillText(`Score: ${this.score}`, 85, 250);
     }
     reset() {
       this.scaredToDeath.pause();
