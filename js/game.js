@@ -66,9 +66,9 @@ class Game {
         obstacle.update();
         obstacle.checkCatchCollision();
       }
-      if (this.level === 50) {
-        this.gameWon();
-      }
+      // if (this.level === 50) {
+      //   this.gameWon();
+      // }
     }
     animation(timestamp) {
       // now you are assignig the animation id to the requested animation frame
