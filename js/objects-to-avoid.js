@@ -43,15 +43,15 @@ class ObjectsToAvoid {
     if (this.y + this.height > 520) {
       this.game.obstaclesToAvoidArray.splice(0, 1);
     }
-    // if (
-    //   this.life > 0 &&
-    //   this.score % 5 == 0 &&
-    //   this.score !== 0
-    // ) {
-    //   this.y = this.y + this.velocity;
-    //   // this.velocity = this.velocity + this.increaseVelocity;
-    //   // this.game.levelUp();
-    // }
+    if (
+      this.life > 0 &&
+      this.score % 5 === 0 &&
+      this.score !== 0
+    ) {
+      this.y = this.y + this.velocity;
+      // this.velocity = this.velocity + this.increaseVelocity;
+      // this.game.levelUp();
+    }
    }
   left() {
     return this.x;

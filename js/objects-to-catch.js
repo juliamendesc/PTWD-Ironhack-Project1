@@ -51,14 +51,14 @@ class ObjectsToCatch {
     if (this.y + this.height > 520) {
       this.game.obstaclesToCatchArray.splice(0, 1);
     }
-    // if (
-    //   this.life > 0 &&
-    //   this.score % 5 == 0 &&
-    //   this.score !== 0
-    // ) {
-    //   this.y = this.y + this.velocity;
-    //   // this.velocity = this.velocity + this.increaseVelocity;
-    // }
+    if (
+      this.life > 0 &&
+      this.score % 5 === 0 &&
+      this.score !== 0
+    ) {
+      this.y = this.y + this.velocity;
+      // this.velocity = this.velocity + this.increaseVelocity;
+    }
   }
   left() {
     return this.x;
