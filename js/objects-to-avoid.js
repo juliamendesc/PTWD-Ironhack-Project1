@@ -49,7 +49,6 @@ class ObjectsToAvoid {
       this.game.score !== 0
     ) {
       this.y = this.y + this.velocity;
-      // this.velocity
       // this.velocity = this.velocity + this.increaseVelocity;
       // this.game.levelUp();
     }
