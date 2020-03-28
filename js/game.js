@@ -66,9 +66,9 @@ class Game {
         obstacle.update();
         obstacle.checkCatchCollision();
       }
-      // if (this.level === 50) {
-      //   this.gameWon();
-      // }
+      if (this.score === 50) {
+        this.gameWon();
+      }
     }
     animation(timestamp) {
       // now you are assignig the animation id to the requested animation frame
@@ -78,17 +78,17 @@ class Game {
       this.animationId = window.requestAnimationFrame(timestamp => {
         this.animation(timestamp);
       });
-      if (this.life > 0 && this.score % 5 === 0 && this.score !== 0) {
-        // this.level++;
-        this.drawEverything(timestamp);
-      } else if (this.life > 0 && this.level < 7) {
-        this.drawEverything(timestamp);
-      } else if (this.level === 7) {
-        this.gameWon();
-      } else if (this.life == 0) {
-        this.end = true;
-        this.endGame();
-      }
+      // if (this.life > 0 && this.score % 5 === 0 && this.score !== 0) {
+      //   // this.level++;
+      //   this.drawEverything(timestamp);
+      // } else if (this.life > 0 && this.level < 7) {
+      //   this.drawEverything(timestamp);
+      // } else if (this.level === 7) {
+      //   this.gameWon();
+      // } else if (this.life == 0) {
+      //   this.end = true;
+      //   this.endGame();
+      // }
       // as the animation is always called it calls updateEverything() which in turn calls drawEverything()
       this.updateEverything();
       // console.log(`Level ${this.level}`);
